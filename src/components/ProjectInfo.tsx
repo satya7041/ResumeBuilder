@@ -90,7 +90,6 @@ const ProjectInfoComponent: React.FC<ProjectInfoComponentProps> = ({ onUpdate })
     
         <label htmlFor="" className='class="text-base font-medium text-gray-700 col-span-full"'>Description: </label>
         <textarea className='mt-1 px-3 py-2 block w-full rounded-md border border-gray-300 text-gray-900 shadow-sm outline-none font-normal text-base cursor-text [&>div]:list-item pl-7'
-          // type="text"
           name="description"
           value={formData.description}
           onChange={(e) => handleInputChange(e, index)}

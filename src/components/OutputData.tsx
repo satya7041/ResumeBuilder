@@ -67,24 +67,6 @@ const OutputComponent: React.FC<OutputComponentProps> =
   isWorkExpInfoVisible, isEducationInfoVisible, isProjectInfoVisible, isSkillInfoVisible,
  }) => { 
 
-    // State variables for visibility
-    // const [isProjectInfoVisible, setProjectInfoVisible] = useState(true);
-    // const [isWorkExpInfoVisible, setWorkExpInfoVisible] = useState(true);
-    // const [isEducationInfoVisible, setEducationInfoVisible] = useState(true);
-
-      // Toggle functions for visibility
-  // const toggleProjectInfo = () => {
-  //   setProjectInfoVisible(!isProjectInfoVisible);
-  // };
-
-  // const toggleWorkExpInfo = () => {
-  //   setWorkExpInfoVisible(!isWorkExpInfoVisible);
-  // };
-
-  // const toggleEducationInfo = () => {
-  //   setEducationInfoVisible(!isEducationInfoVisible);
-  // }
-
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -94,79 +76,6 @@ const OutputComponent: React.FC<OutputComponentProps> =
   //For PDF view-----------------------------------------------------------------------------------------------------------------------
   
   const generatePDFContent = (): JSX.Element => (
-//     <Document style={styles.page}>
-//       <Page >
-//         <View style={styles.container}>
-
-//         {/* Basic Info---------------------------------------------------------------------- */}
-// <div className="bg-gray-300 p-4 rounded-md">
-//       <Text style={styles.heading}>{`${basicInfo.name}\n`}</Text>
-//         <Text style={styles.content2}>{`${basicInfo.location} ||`}{` ${basicInfo.email}\n`}</Text>
-//         <Text style={styles.content2}>{`${basicInfo.phoneNumber} || `}{` ${basicInfo.linkedin}\n`}</Text>
-//         <Text style={styles.content} >{`${basicInfo.objective}\n`}</Text>
-//         <Text style={styles.content} ></Text>
-
-
-//         </div>
-//             {/* Work Experience Info---------------------------------------------------------------------- */}
-        
-//             <Text style={styles.heading} >Work Experience</Text>
-
-//     {experienceInfo.map((experience, index) => (
-      
-//               <Text  style={styles.content}  key={`experience-${index}`}>
-//               <Text style={styles.mainContent}> {`${experience.company}\n`}</Text> 
-//               <Text style={styles.mainContent}> {`${experience.jobTitle}\n`}</Text> 
-//                 {`${experience.date}\n`}
-//                 {`${experience.description}\n`}
-//               </Text>
-//         ))}
-
-
-//         {/* Education Info---------------------------------------------------------------------- */}
-      
-//         <Text style={styles.heading} >Education</Text>
-
-//         {educationInfo.map((education, index) => (
-          
-//           <Text  style={styles.content} key={`education-${index}`}>
-//            <Text style={styles.mainContent}> {`${education.school}\n`}</Text>
-//           <Text style={styles.mainContent}></Text>  {`${education.degree}\n`}
-//             {`${education.date}\n`}
-//             {`${education.gpa} GPA\n`}
-//             {`${education.additionalInfo}\n`}
-//           </Text>
-
-//             ))}
-
-
-         
-//         {/* Project Info---------------------------------------------------------------------- */}
-
-
-//         <Text style={styles.heading} >Projects</Text>
-
-// {projectInfo.map((project, index) => (
-//           <Text  style={styles.content} key={`project-${index}`}>
-//          <Text style={styles.mainContent}>   {`${project.project}\n`}</Text>
-//           {`${project.date}\n`}
-//          {`${project.description}\n`}
-//           </Text>
-//         ))}
-                
-//         {/* Skill Info---------------------------------------------------------------------- */}
-
-
-//         <Text style={styles.heading} >Skills</Text>
-
-// {skillInfo.map((skill, index) => (
-//           <Text   style={styles.content} key={`skill-${index}`}>{` ${skill.skill}\n`}</Text>
-//         ))}
-//         </View>
-//       </Page>
-//     </Document>
-//   )
-
     <Document style={styles.page}>
       <Page >
         <View style={styles.container}>
@@ -192,18 +101,17 @@ const OutputComponent: React.FC<OutputComponentProps> =
 
         </div>
             {/* Education Info---------------------------------------------------------------------- */}
+
           {isEducationInfoVisible && (
             <>      
 <Text style={{marginBottom:2, borderBottom:1, justifyContent:'center',
                    borderBottomWidth: 2,fontSize:18}}>Education</Text>          
                      {educationInfo.map((education, index) => (
          <View key={`education-${index}`}> 
-              {/* <Text  style={styles.content} key={`education-${index}`}> */}
                <Text style={{marginLeft:2, fontWeight:'bold', fontSize:14}}> {`${education.school}\n`}</Text>
               <Text style={{marginLeft:2, fontWeight:'semibold', fontSize:11}}> {`${education.degree}`}</Text> 
               <Text style={{marginLeft:2, fontWeight:'semibold', fontSize:11}}>  {`${education.date}\n`}</Text>
                <Text style={{marginLeft:2, fontWeight:'semibold', fontSize:11}}> {`${education.gpa} GPA`} </Text>
-                {/* {`${education.additionalInfo}\n`} */}
                 {education.additionalInfo.split('\n').map((item, idx) => (
                   item.trim() !=='' &&
 
@@ -233,6 +141,7 @@ const OutputComponent: React.FC<OutputComponentProps> =
               <Text style={{marginLeft:2, fontSize:11}}>  {`${experience.date}\n`}</Text>
               <Text style={{marginLeft:2, fontWeight:'semibold', fontSize:11}}> {`${experience.jobTitle}`}</Text> 
                 {/* Map over each item in the description and render it as a separate Text component */}
+
     {experience.description.split('\n').map((item, idx) => (
       item.trim() !== '' &&
       <View style={styles.description} key={`experience-description-${idx}`}>• {item}
@@ -258,16 +167,12 @@ const OutputComponent: React.FC<OutputComponentProps> =
        {index ===0 &&(<Text style={{marginBottom:5,fontWeight:'bold',
                       borderBottomWidth: 2,fontSize:18}}>Projects</Text>)}
 
-       {/*  <Text  style={styles.content} key={`project-${index}`}> */}
 
        <Text style={{marginLeft:2, fontWeight:'bold', fontSize:14}}>   {`${project.project}`}</Text>
        <Text style={{marginLeft:2, fontSize:11}}> {`${project.date}\n`}</Text>
-       {/* {`${project.description}\n`} */}
        {project.description.split('\n').map((item, idx) => (
                   item.trim() !== '' && // Check if item is not an empty string
 
-      //    <Text style={styles.content} key={`project-description-${idx}`}>• {item}
-      // </Text>
       <View style={styles.description} key={`project-description-${idx}`}>
             <Text style={styles.bullet}>•</Text>
             <Text style={styles.content}>{item}</Text>
@@ -442,35 +347,24 @@ alignContent:'center',
       {/* Basic Information------------------------------------------------------------- */}
 
       <div className="">
-          {/* <span className="font-semibold">Name:</span> */}
          <span className=" text-xl flex justify-center mb-15 font-extrabold text-center">{basicInfo.name}</span>
         </div>
         <div className="font-lg mb-10 m-5 ml-5  text-center justify-center font-bold">
-          {/* <span className="font-semibold">Location:</span> */}
           <span className="ml-2">{basicInfo.location} </span>
 
-          {/* <span className="font-semibold">Email:</span> */}
           <span className="">  {basicInfo.email} </span>
-        {/* </div>  
-        <div className="mb-2"> */}
+       
         <div>
-          {/* <span className="font-semibold">Phone Number:</span> */}
           <span className="">{basicInfo.phoneNumber} </span>
-        {/* <div className="mb-2"> */}
 
-          {/* <span className="font-semibold">Linkedin:</span>
-           */}
+        
           <span className="ml-2">{basicInfo.linkedin}</span>
 
-        {/* </div>
-        <div className="mb-2"> */}
-        {/* </div> */}
+      
         </div>
         
         </div>
         <div className="mb-2 whitespace-normal break-normal max-w-full">
-        {/* <h1 className='mb-2 font-bold text-start underline'>Professional Summary:</h1> */}
-          {/* <span className="font-semibold">Objective:</span> */}
           <span className="ml-2, text-xs">{basicInfo.objective}</span>
         </div>
 
@@ -482,28 +376,22 @@ alignContent:'center',
 <h1 className='mb-2 font-bold text-xl text-start border-b-2 border-black'>Education</h1>
       {educationInfo.map((education, index) =>(
         <div key={index}>
-        {/* <button onClick={toggleEducationInfo}>{isEducationInfoVisible ? 'Hide Education Info' : 'Show Education Info'}</button> */}
 
     <div className="">
-      {/* <span className="font-semibold">School:</span> */}
       <span className="ml-2 font-bold text-sm">{education.school}</span>
     </div>
     
     <div className="">
-      {/* <span className="font-semibold">Degree:</span> */}
       <span className="ml-2 font-semibold text-sm">{education.degree}</span>
     </div>
     
     <div className="">
-      {/* <span className="font-semibold">Date:</span> */}
       <span className="ml-2 text-sm">{education.date}</span>
     </div>
     <div className="">
-      {/* <span className="font-semibold">GPA:</span> */}
       <span className="ml-2 font-semibold text-sm">{education.gpa}</span>
     </div>
     <div className="mb-2">
-      {/* <span className="font-semibold">Additional Information:</span> */}
       <span className="ml-2, text-xs">{education.additionalInfo}</span>
     </div>
     </div>
@@ -519,26 +407,21 @@ alignContent:'center',
     
     {experienceInfo.map((experience, index) =>(
     <div key={index}>
-    {/* <button onClick={toggleWorkExpInfo}>{isWorkExpInfoVisible ? 'Hide Experience Info' : 'Show Experience Info'}</button> */}
     
     
     <div className="font-bold">
-      {/* <span className="font-semibold">Company: </span> */}
       <span className="ml-2 font-extrabold text-sm">{experience.company}</span>
     </div>
     
     <div className="font-semibold">
-      {/* <span className="font-semibold">Job Title: </span> */}
       <span className="ml-2, text-sm">
         {experience.jobTitle}</span>
     </div>
     
     <div className="">
-    {/* <span className="font-semibold">Date:</span> */}
     <span className="ml-2, text-sm">{experience.date}</span>
     </div>
     <div className="mb-2">
-    {/* <span className="font-semibold">Description: </span> */}
     <span className="ml-2, text-xs">{experience.description}</span>
     </div>
     
@@ -549,6 +432,7 @@ alignContent:'center',
     )}
 
   {/* Project Informaion---------------------------------------------------------------------------- */}
+
  {isProjectInfoVisible && (
   <>
  
@@ -556,19 +440,15 @@ alignContent:'center',
   {projectInfo.map((projects, index) =>(
     
           <div key={index}>
-           {/* <button onClick={toggleProjectInfo}>{isProjectInfoVisible ? 'Hide Project Info' : 'Show Project Info'}</button> */}
         <div className="">
-          {/* <span className="font-semibold">Project Name: </span> */}
           <span className="ml-2 , text-sm font-bold">{projects.project}</span>
         </div>
         
         <div className=" font-semibold">
-          {/* <span className="font-semibold">Date: </span> */}
           <span className="ml-2,text-sm">{projects.date}</span>
         </div>
         
         <div className="mb-2">
-          {/* <span className="font-semibold">Description:</span> */}
           <span className="ml-2, text-xs">{projects.description}</span>
         </div>
         
@@ -578,6 +458,7 @@ alignContent:'center',
  )}
 
   {/* Skills Informaion------------------------------------------------------------------------ */}
+
  {isSkillInfoVisible && (
   <>
   {skillInfo.map((skills, index) =>(
@@ -585,7 +466,6 @@ alignContent:'center',
      <h1 className='mb-2 font-bold text-xl text-start border-b-2 border-black'>Skills</h1>
 
         <div className="mb-2">
-          {/* <span className="font-semibold">Skills: </span> */}
           <span className="ml-2, text-xs">{skills.skill}</span>
         </div>
         
@@ -597,6 +477,7 @@ alignContent:'center',
   {isClient && (
 
 //  {/* PDF download button */}
+
       <PDFDownloadLink document={generatePDFContent()} fileName="output.pdf">
         {({ loading }) => (loading ? 'Loading document...' : 'Download PDF')}
       </PDFDownloadLink>

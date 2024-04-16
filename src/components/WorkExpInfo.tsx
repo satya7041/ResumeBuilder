@@ -11,7 +11,6 @@ import {
 
 interface WorkExpInfoComponentProps {
   onUpdate: (data: { company:string; jobTitle: string; date: string; description: string;  }[]) => void;
-  // isWorkExpInfoVisible: boolean; 
 
   
 }

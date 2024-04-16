@@ -90,11 +90,7 @@ const [skillInfo, setSkillInfo] = useState([
           <BasicInfoComponent onUpdate={handleBasicInfoUpdate} />
   <div className="card">
     <div className="cardHeader">
-                {/* Here icon is not added */}
-       {/* <button onClick={toggleEducationInfoVisiblity}>{isEducationInfoVisible ? 'Hide Education' : 'Show Education'}</button>
-          {isEducationInfoVisible && 
-          <EducationInfoComponent onUpdate={handleEducationInfoUpdate} /> } */}
-
+                
        <button className="cardButton" onClick={toggleEducationInfoVisiblity}>{isEducationInfoVisible ? <IoEye/> : < IoEyeOff /> }</button>
        <div className='cardContent'>
  {isEducationInfoVisible && 
@@ -103,7 +99,6 @@ const [skillInfo, setSkillInfo] = useState([
 </div>
   </div>
   </div>
-          {/* <WorkExpInfoComponent onUpdate={handleWorkExpInfoUpdate} />*/}
 
 
           <div className="card">
@@ -119,7 +114,6 @@ const [skillInfo, setSkillInfo] = useState([
 
 
       
-         {/* <ProjectInfoComponent onUpdate={handleProjectInfoUpdate}/> */}
          <div className="card">
     <div className="cardHeader">
           <button className="cardButton" onClick={toggleProjectVisibility}>{isProjectInfoVisible ? <IoEye/> : < IoEyeOff /> }</button>

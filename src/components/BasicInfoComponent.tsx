@@ -28,12 +28,7 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({ onUpdate }) => 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target; 
-    //it causes delay update so i comment it
-    // setFormData(prevState => ({
-    //   ...prevState,
-    //   [name]: value
-    // }));
-
+    
     //to avoid delay update 
     const updatedFormData = {...formData, [name]:value};
     setFormData(updatedFormData);

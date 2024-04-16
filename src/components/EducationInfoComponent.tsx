@@ -67,9 +67,7 @@ const EducationInfoComponent: React.FC<EducationInfoComponentProps> = ({ onUpdat
             onChange={handleTitleChange}
           /></CardTitle>
     </CardHeader>
-  {/* <CardHeader>
-    <CardTitle className='text-center'>Education</CardTitle>
-    </CardHeader> */}
+  
   <CardContent>
     {formDataList.map((formData, index) => (
       <div key={index}>

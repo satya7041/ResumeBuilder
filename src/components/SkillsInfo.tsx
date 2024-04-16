@@ -88,14 +88,10 @@ const SkillInfoComponent: React.FC<SkillInfoComponentProps> = ({ onUpdate }) => 
           placeholder="Mention your skills"
         />
 
-        {/* Remove button=> no need in this ccomponent */}
-          {/* {formDataList.length > 1 && (
-            <button onClick={() => handleRemove(index)}>Remove</button>
-          )} */}
+      
       </div>
     ))}
-    {/* no need for addMore button, because i use textarea in skill */}
-    {/* <button onClick={handleAddMore}>Add More</button> */}
+  
     </CardContent>
     </Card>
   </div>
