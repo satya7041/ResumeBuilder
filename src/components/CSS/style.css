@@ -1,0 +1,30 @@
+/* styles.css */
+.card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.cardHeader {
+    margin-bottom: 14px;
+}
+
+.cardTitle {
+    margin: 0; /* Remove default margin */
+}
+
+.cardButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.cardContent {
+    margin-top: 10px;
+}
