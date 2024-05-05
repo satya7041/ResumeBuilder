@@ -83,10 +83,108 @@ const [skillInfo, setSkillInfo] = useState([
   const handleSkillInfoUpdate = (skillInfo: {skill:string; }[]) => {
     setSkillInfo(skillInfo);
   };
+  const [componentOrder, setComponentOrder] = useState([
+    "educationInfo",
+    "experienceInfo",
+    "projectInfo",
+    "skillInfo"
+  ]);
+  
+  const swapComponents = (index: number) => {
+    setComponentOrder((prevOrder) => {
+      const newOrder = [...prevOrder];
+      if (index >= 0 && index < newOrder.length - 1) {
+        const temp = newOrder[index];
+        newOrder[index] = newOrder[index + 1];
+        newOrder[index + 1] = temp;
+      }
+      return newOrder;
+    });
+  };
+  
   return (
-    
-      <div className="flex justify-center mt-8">
-        <div className="w-1/2 p-4 border-r border-gray-400">
+
+    <div className="flex justify-center mt-8">
+     <div className="w-1/2 p-4 border-r border-gray-400">
+          <BasicInfoComponent onUpdate={handleBasicInfoUpdate} />
+        
+        {componentOrder.map((componentKey, index) => {
+      switch (componentKey) {
+        case "educationInfo":
+          return (
+            <div className="card">
+    <div className="cardHeader">
+            <div className='cardContent'>
+              <button className="cardButton" onClick={toggleEducationInfoVisiblity}>{isEducationInfoVisible ? <IoEye/> : < IoEyeOff /> }</button>
+
+            {isEducationInfoVisible && 
+            <EducationInfoComponent
+            key={`${componentKey}-${index}`}
+            onUpdate={handleEducationInfoUpdate}
+            onSwap={() => swapComponents(index)}
+            />
+          }
+          </div>
+          </div>
+  </div>
+          );
+        case "experienceInfo":
+          return (
+            <div className="card">
+            <div className="cardHeader">
+              <button className="cardButton" onClick={toggleWorkExpVisiblity}>{isWorkExpInfoVisible ? <IoEye/> : < IoEyeOff />  }</button>
+                    <div className='cardContent'>
+                    {isWorkExpInfoVisible && 
+            <WorkExpInfoComponent
+              key={`${componentKey}-${index}`}
+              onUpdate={handleWorkExpInfoUpdate}
+              onSwap={() => swapComponents(index)}
+                    
+            />
+                    }
+            </div>
+            </div>
+            </div>
+          );
+          
+        case "projectInfo":
+          return (
+            
+         <div className="card">
+         <div className="cardHeader">
+               <button className="cardButton" onClick={toggleProjectVisibility}>{isProjectInfoVisible ? <IoEye/> : < IoEyeOff /> }</button>
+               <div className='cardContent'>
+        {isProjectInfoVisible &&
+            <ProjectInfoComponent
+              key={`${componentKey}-${index}`}
+              onUpdate={handleProjectInfoUpdate}
+              onSwap={() => swapComponents(index)}
+            />}
+            </div>
+  </div>
+  </div>
+          );
+          case "skillInfo":
+            return(
+              <div className="card">
+    <div className="cardHeader">
+<button className="cardButton" onClick={toggleSkillInfoVisibility}>{isSkillInfoVisible ? <IoEye/> : < IoEyeOff /> }</button>
+<div className='cardContent'>
+  {isSkillInfoVisible &&
+              <SkillInfoComponent
+              key={`${componentKey}-${index}`}
+              onUpdate={handleSkillInfoUpdate}
+              onSwap={() => swapComponents(index)}
+              />}
+              </div>
+</div>
+  </div>
+            )
+        default:
+          return null;
+      }
+    })}
+        {/* <div className="w-1/2 p-4 border-r border-gray-400">
           <BasicInfoComponent onUpdate={handleBasicInfoUpdate} />
   <div className="card">
     <div className="cardHeader">
@@ -94,7 +192,8 @@ const [skillInfo, setSkillInfo] = useState([
        <button className="cardButton" onClick={toggleEducationInfoVisiblity}>{isEducationInfoVisible ? <IoEye/> : < IoEyeOff /> }</button>
        <div className='cardContent'>
  {isEducationInfoVisible && 
-          <EducationInfoComponent onUpdate={handleEducationInfoUpdate} /> }
+          <EducationInfoComponent onUpdate={handleEducationInfoUpdate} onSwap={() => swapComponents}
+          /> }
 
 </div>
   </div>
@@ -107,19 +206,19 @@ const [skillInfo, setSkillInfo] = useState([
             <div className='cardContent'>
             {isWorkExpInfoVisible && 
 
-            <WorkExpInfoComponent onUpdate={handleWorkExpInfoUpdate}/>}
+            <WorkExpInfoComponent onUpdate={handleWorkExpInfoUpdate}onSwap={() => swapComponents}/>}
             </div>
   </div>
   </div>
 
 
-      
+
          <div className="card">
     <div className="cardHeader">
           <button className="cardButton" onClick={toggleProjectVisibility}>{isProjectInfoVisible ? <IoEye/> : < IoEyeOff /> }</button>
           <div className='cardContent'>
    {isProjectInfoVisible &&
-         <ProjectInfoComponent onUpdate={handleProjectInfoUpdate} />}
+         <ProjectInfoComponent onUpdate={handleProjectInfoUpdate} onSwap={() => swapComponents} />}
 
 </div>
   </div>
@@ -130,12 +229,14 @@ const [skillInfo, setSkillInfo] = useState([
 <button className="cardButton" onClick={toggleSkillInfoVisibility}>{isSkillInfoVisible ? <IoEye/> : < IoEyeOff /> }</button>
 <div className='cardContent'>
   {isSkillInfoVisible &&
-          <SkillInfoComponent onUpdate={handleSkillInfoUpdate}/>}
+          <SkillInfoComponent onUpdate={handleSkillInfoUpdate} onSwap={() => swapComponents}/>}
 </div>
 </div>
   </div>
 
+        </div> */}
         </div>
+
         <div className="w-1/2 p-4">
           <OutputData basicInfo={basicInfo} 
           experienceInfo={experienceInfo} 
@@ -150,11 +251,13 @@ const [skillInfo, setSkillInfo] = useState([
         isEducationInfoVisible={isEducationInfoVisible}
 
         isSkillInfoVisible= {isSkillInfoVisible }
+        componentOrder={componentOrder} // Pass the reordered component order to OutputData
+
         
             />
         </div>
       </div>
-    );
+  )
   };
 
 export default Home; 
